@@ -19,6 +19,11 @@ CREATE TABLE IF NOT EXISTS jugadores (
   nacionalidad VARCHAR(100),
   club_actual VARCHAR(100),
   altura_cm INT,
+  -- Información de contacto
+  telefono VARCHAR(30),
+  email VARCHAR(150),
+  contacto_familiar VARCHAR(255),
+  contacto_manager VARCHAR(255),
   -- Perfil Geográfico del Jugador
   demarcacion_principal VARCHAR(50),
   demarcacion_secundaria VARCHAR(50),

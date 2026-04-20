@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Phone, Mail, Users, UserCircle } from "lucide-react";
 import PerfilGeografico from "@/components/perfil-geografico";
 import { POSICIONES } from "@/types";
 
@@ -20,6 +20,11 @@ export default function NuevoJugadorPage() {
   const [nacionalidad, setNacionalidad] = useState("");
   const [clubActual, setClubActual] = useState("");
   const [alturaCm, setAlturaCm] = useState("");
+
+  const [telefono, setTelefono] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactoFamiliar, setContactoFamiliar] = useState("");
+  const [contactoManager, setContactoManager] = useState("");
 
   const [demarcacionPrincipal, setDemarcacionPrincipal] = useState("");
   const [demarcacionSecundaria, setDemarcacionSecundaria] = useState("");
@@ -43,6 +48,10 @@ export default function NuevoJugadorPage() {
       nacionalidad: nacionalidad || null,
       club_actual: clubActual || null,
       altura_cm: alturaCm ? Number(alturaCm) : null,
+      telefono: telefono || null,
+      email: email || null,
+      contacto_familiar: contactoFamiliar || null,
+      contacto_manager: contactoManager || null,
       demarcacion_principal: demarcacionPrincipal || null,
       demarcacion_secundaria: demarcacionSecundaria || null,
       zonas_influencia: zonasInfluencia.length > 0 ? zonasInfluencia : null,
@@ -159,6 +168,72 @@ export default function NuevoJugadorPage() {
                 className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-green-500 transition-colors"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Información de contacto */}
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-orange-900/60 border border-orange-700/50 flex items-center justify-center">
+              <Phone size={14} className="text-orange-400" />
+            </div>
+            <div>
+              <h2 className="text-sm font-semibold text-white">Información de contacto</h2>
+              <p className="text-xs text-slate-500">Datos personales para contactar con el jugador o su entorno</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                <Phone size={11} /> Teléfono
+              </label>
+              <input
+                type="tel"
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                placeholder="+34 600 000 000"
+                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                <Mail size={11} /> Correo electrónico
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="jugador@email.com"
+                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
+              <Users size={11} /> Contacto familiar
+            </label>
+            <input
+              type="text"
+              value={contactoFamiliar}
+              onChange={(e) => setContactoFamiliar(e.target.value)}
+              placeholder="Ej: Juan García (padre) — +34 611 111 111"
+              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
+              <UserCircle size={11} /> Representante / Manager
+            </label>
+            <input
+              type="text"
+              value={contactoManager}
+              onChange={(e) => setContactoManager(e.target.value)}
+              placeholder="Ej: Sport Agency — contacto@agency.com"
+              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+            />
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Plus, Edit, FileText, Calendar, MapPin } from "lucide-react";
+import { ArrowLeft, Plus, Edit, FileText, Calendar, MapPin, Phone, Mail, Users, UserCircle } from "lucide-react";
 import RadarMetricas from "@/components/radar-chart";
 import CampoSVG from "@/components/campo-svg";
 import { calcularEdad, formatDate, promedioMetricas, getColorValoracion } from "@/lib/utils";
@@ -111,6 +111,60 @@ export default async function JugadorDetailPage({ params }: PageProps) {
             ))}
           </div>
         </div>
+
+        {/* Contacto */}
+        {(jugador.telefono || jugador.email || jugador.contacto_familiar || jugador.contacto_manager) && (
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Phone size={14} className="text-orange-400" />
+              <h3 className="text-sm font-semibold text-white">Información de contacto</h3>
+            </div>
+            {jugador.telefono && (
+              <a href={`tel:${jugador.telefono}`} className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-colors group">
+                <div className="w-8 h-8 rounded-lg bg-orange-900/40 border border-orange-800/40 flex items-center justify-center flex-shrink-0">
+                  <Phone size={13} className="text-orange-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-slate-500">Teléfono</p>
+                  <p className="text-sm text-white group-hover:text-orange-300 transition-colors truncate">{jugador.telefono}</p>
+                </div>
+              </a>
+            )}
+            {jugador.email && (
+              <a href={`mailto:${jugador.email}`} className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-colors group">
+                <div className="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-800/40 flex items-center justify-center flex-shrink-0">
+                  <Mail size={13} className="text-blue-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-slate-500">Email</p>
+                  <p className="text-sm text-white group-hover:text-blue-300 transition-colors truncate">{jugador.email}</p>
+                </div>
+              </a>
+            )}
+            {jugador.contacto_familiar && (
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-800/50">
+                <div className="w-8 h-8 rounded-lg bg-purple-900/40 border border-purple-800/40 flex items-center justify-center flex-shrink-0">
+                  <Users size={13} className="text-purple-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-slate-500">Contacto familiar</p>
+                  <p className="text-sm text-white truncate">{jugador.contacto_familiar}</p>
+                </div>
+              </div>
+            )}
+            {jugador.contacto_manager && (
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-800/50">
+                <div className="w-8 h-8 rounded-lg bg-green-900/40 border border-green-800/40 flex items-center justify-center flex-shrink-0">
+                  <UserCircle size={13} className="text-green-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-slate-500">Representante / Manager</p>
+                  <p className="text-sm text-white truncate">{jugador.contacto_manager}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Perfil Geográfico */}
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">

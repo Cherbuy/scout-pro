@@ -8,6 +8,10 @@ export interface Jugador {
   nacionalidad: string | null;
   club_actual: string | null;
   altura_cm: number | null;
+  telefono: string | null;
+  email: string | null;
+  contacto_familiar: string | null;
+  contacto_manager: string | null;
   created_at: string;
   // Perfil Geográfico
   demarcacion_principal: string | null;
