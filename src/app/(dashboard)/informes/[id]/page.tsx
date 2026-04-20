@@ -92,9 +92,9 @@ export default async function InformeDetailPage({ params }: PageProps) {
           <h3 className="text-sm font-semibold text-white mb-3">Perfil de métricas</h3>
           <RadarMetricas tecnica={avg.tecnica} fisica={avg.fisica} tactica={avg.tactica} />
           <div className="space-y-3 mt-4">
-            <MetricSlider label="Técnica" value={informe.metrica_tecnica} onChange={() => {}} color="green" readonly />
-            <MetricSlider label="Física" value={informe.metrica_fisica} onChange={() => {}} color="blue" readonly />
-            <MetricSlider label="Táctica" value={informe.metrica_tactica} onChange={() => {}} color="purple" readonly />
+            <MetricSlider label="Técnica" value={informe.metrica_tecnica} color="green" readonly />
+            <MetricSlider label="Física" value={informe.metrica_fisica} color="blue" readonly />
+            <MetricSlider label="Táctica" value={informe.metrica_tactica} color="purple" readonly />
           </div>
         </div>
 

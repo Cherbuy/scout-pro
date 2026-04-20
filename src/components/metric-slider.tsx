@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 interface MetricSliderProps {
   label: string;
   value: number;
-  onChange: (v: number) => void;
+  onChange?: (v: number) => void;
   color?: "green" | "blue" | "purple";
   readonly?: boolean;
 }
@@ -41,7 +41,7 @@ export default function MetricSlider({ label, value, onChange, color = "green", 
           min={1}
           max={10}
           value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={(e) => onChange?.(Number(e.target.value))}
           className="w-full h-2 rounded-full appearance-none cursor-pointer bg-slate-700 accent-green-500"
           style={{ accentColor: color === "green" ? "#22c55e" : color === "blue" ? "#3b82f6" : "#a855f7" }}
         />
