@@ -1,12 +1,13 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Download, Calendar, Trash2 } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import RadarMetricas from "@/components/radar-chart";
 import CampoSVG from "@/components/campo-svg";
 import MetricSlider from "@/components/metric-slider";
 import { promedioMetricas, getColorValoracion, formatDate } from "@/lib/utils";
 import ExportPDFButton from "./export-pdf-button";
+import ExportExcelButton from "./export-excel-button";
 import DeleteInformeButton from "./delete-button";
 
 interface PageProps { params: Promise<{ id: string }> }
@@ -44,7 +45,8 @@ export default async function InformeDetailPage({ params }: PageProps) {
           </p>
         </div>
         <div className="flex gap-2">
-          <ExportPDFButton informeId={id} jugadorNombre={informe.jugadores.nombre_completo} />
+          <ExportPDFButton informe={informe} />
+          <ExportExcelButton informe={informe} />
           <DeleteInformeButton informeId={id} jugadorId={informe.jugadores.id} />
         </div>
       </div>
